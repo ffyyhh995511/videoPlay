@@ -1,0 +1,960 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<html>
+<head>
+<title>play</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!-- css -->
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<style type="text/css">
+body {
+	background: url(img/body.png);
+}
+
+::-webkit-scrollbar {
+ width: 10px;
+ opacity: .5;
+ -webkit-transition: .25s;
+ -moz-transform:.25s;
+}
+::-webkit-scrollbar-button {
+ width: 10px;
+ height: 5px;
+ -webkit-transition: .25s;
+}
+::-webkit-scrollbar-track {
+		/* border: thin solid lightgray; 
+		box-shadow: 0px 0px 3px #dfdfdf inset; */
+		border-radius: 10px;
+ -webkit-transition: .25s;
+ -moz-border-radius:10px;
+ -moz-transition:.25s;
+}
+::-webkit-scrollbar-thumb {
+ background:#999;
+ opacity: .3;
+		/* border: thin solid gray; */
+		border-radius: 10px;
+ -webkit-transition: .25s;
+ border-radius: 10px;
+ -webkit-transition: .25s;
+}
+	::-webkit-scrollbar-thumb:hover {
+ background:#09C;
+ -webkit-transition: .25s;
+ -moz-transition:.25s;
+}
+.container {
+	width: 1000px;
+}
+.play {
+	position: relative;
+	margin-top: 60px;
+	background: black;
+	width: 1000px;
+	height: auto;
+	box-shadow: 0px 0px 25px;
+}
+.play > video {
+	width: 100%;
+}
+.right-slide-bar {
+	position: absolute;
+	right: 0px;
+	top: 150px;
+	z-index: 2;
+	height: 192px;
+	width: 96px;
+	display: none;
+}
+.slide-every-div {
+	position: relative;
+	width: 96px;
+	height: 48px;
+	margin-bottom: 10px;
+}
+.slide-every-div > div {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	text-align: center;
+	display: none;
+}
+.slide-every-div > img {
+	position: absolute;
+	left: 48px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+}
+.slide-every-div > img:hover {
+	cursor: pointer;
+}
+.slide-every-div > div > p {
+	color: white;
+	margin-top: 12px;
+}
+.div-show {
+	display: block;
+}
+#title {
+	cursor: move;
+}
+.button {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+ *display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1.5px;
+}
+.pink {
+	color: #feeef5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#A09E9E), to(#000000));
+	background: -moz-linear-gradient(top, #A09E9E, #000000);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+}
+.video-info {
+	height: 60px;
+	margin-top: 5px;
+}
+.video-name {
+	color: #AFAFAF;
+	margin-left: 10px;
+}
+.video-name > span {
+	color: rgb(87, 177, 102);
+}
+.video-play-time {
+	float: right;
+	margin-right: 10px;
+	color: #AFAFAF;
+}
+.video-share {
+	margin-left: 10px;
+	color: #AFAFAF;
+	margin-top: 8px;
+}
+.video-button {
+	float: right;
+	margin-right: 10px;
+}
+.comment {
+	position: relative;
+	background: white;
+	width: 1000px;
+	/*height: 2000px;用height:auto取代*/
+	height: auto;
+	overflow: hidden;/*清楚浮动*/
+	margin-bottom: 50px;
+	box-shadow: 0px 0px 25px;
+}
+.comment > div:nth-of-type(1) {
+	width: 650px;
+	float: left;
+	height: auto;
+}
+.input-comment {
+	background: whiteSmoke;
+	width: 600px;
+	margin: 25px 25px;
+	height: 150px;
+	box-shadow: 1px 1px 10px rgb(184, 184, 184), -1px -1px 10px rgb(196, 196, 196);
+}
+.input-comment > div:nth-of-type(1) {
+	margin-top: 10px;
+}
+.input-comment > div:nth-of-type(1) > p {
+	margin-left: 10px;
+	margin-top: 5px;
+	padding-top: 5px;
+}
+.input-comment > div:nth-of-type(2) {
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 25px;
+}
+.input-comment > div:nth-of-type(3) {
+	float: left;
+	width: 500px;
+	margin-bottom: 10px;
+}
+.input-comment > div:nth-of-type(3) > form > textarea {
+	max-width: 500px;
+	width: 500px;
+	max-height: 65px;
+	margin-left: 10px;
+}
+.comment-list {
+	list-style: none;
+	width: 600px;
+	margin-bottom: 10px;
+	box-shadow: 1px 1px 10px rgb(216, 216, 216), -1px -1px 10px rgb(209, 209, 209);
+}
+.comment-list > div {
+	width: 600px;
+	height: 150px;
+}
+.comment-list > div > div:nth-of-type(1) {
+	margin-left: 5px;
+	float: left;
+	margin-top: 5px;
+	border-radius: 25px;
+	border: 1px solid pink;
+	overflow: hidden;
+}
+.comment-list > div > div:nth-of-type(2) {
+	height: 150px;
+	width: 515px;
+	margin-left: 15px;
+	float: left;
+}
+.comment-name {
+	margin-top: 5px;
+	color: rgb(231, 89, 203);
+}
+.comment-name > span {
+	float: right;
+	color: rgb(162, 162, 162);
+}
+.video-recommend {
+	width: 350px;
+	float: left;
+	/*height:2000px;*/
+	height: auto;
+}
+.recommend-title {
+	width: 330px;
+	height: 30px;
+	border: 1px solid rgb(207, 207, 207);
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dddddd), color-stop(1, #fdfdfd));
+	background: -moz-linear-gradient(center bottom, #DDDDDD 0%, #FAFAFA 100%) repeat scroll 0 0 transparent;
+	margin-top: 25px;
+}
+.recommend-title > div > span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 18px;
+	margin-top: 6px;
+}
+.recommend-list {
+	width: 350px;
+}
+.recommend-list > ul {
+	margin: 0px;
+	border: 1px solid rgb(207, 207, 207);
+	width: 330px;
+}
+.recommend-list > ul > li {
+	list-style: none;
+	margin-top: 5px;
+}
+.recommend-list > ul > li > div {
+	width: 330px;
+	height: 80px;
+	position: relative;
+}
+.recommend-list > ul > li > div > img {
+	float: left;
+}
+.recommend-list > ul > li > div > img:hover {
+	cursor: pointer;
+}
+.recommend-list > ul > li > div > div {
+	float: left;
+	height: 80px;
+	width: 180px;
+}
+.recommend-video-text {
+	margin-left: 10px;
+	width: 170px;
+	font-size: 12px;
+	margin-bottom: 0px;
+	color: rgb(162, 162, 162);
+}
+.relevance {
+	float: right;
+	margin-top: 9px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.play-icon {
+	position: absolute;
+	z-index: 20;
+	top: 9.5px;
+	left: 44.5px;
+	display: none;
+}
+.reply {
+	float: right;
+	cursor: pointer;
+	color: rgb(230, 44, 185);
+}
+.support {
+	float: right;
+	margin-right: 10px;
+	cursor: pointer;
+	color: rgb(230, 44, 185);
+}
+.top {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	bottom: 150px;
+	display: none;
+}
+.top > img {
+	opacity: 0.7;
+	border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px, -2px -2px 5px;
+}
+.load {
+	text-align: center;
+	display: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.load > img {
+	opacity: 0.6;
+}
+</style>
+
+<!-- js -->
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	$(document).ready(function() {
+		/*测试hover被mouseenter替代*/
+		/*$('.play video').mouseenter(function(){
+				$('.right-slide-bar').show();
+			});
+		$('.play video').mouseleave(function(){
+				$('.right-slide-bar').hide();
+			});*/
+		
+		$('.play video').hover(function(){
+				$('.right-slide-bar').show();
+			},
+			function(){
+				$('.right-slide-bar').hide();
+		});	
+		
+		$('.slide-every-div > img').hover(function(){
+				$(this).parent().find('div').show();
+			},
+			function(){
+				$(this).parent().find('div').hide();
+		});
+		
+		//修改bug
+		$('.right-slide-bar').mouseenter(function(){
+				$(this).show();
+			});
+		$('.right-slide-bar').mouseout(function(){
+				$(this).hide();
+			});	
+			
+		//灯光
+		$('#light').click(function(){
+				if($(this).parent().find('p').text()=="关灯"){
+					$('body').css({ background: "black" });
+					$(this).parent().find('p').text("开灯");
+					$('.comment').hide();
+				}else{
+					$(this).parent().find('p').text("关灯");
+					$('body').css({ background: "url(img/body.png)" });
+					$('.comment').show();
+					};
+			});
+		
+		//scroll 评论
+		$('#scroll-comment').click(function(){
+				$("html,body").animate({scrollTop: $('.play').height()}, 1000);
+			});	
+		
+			
+		//弹窗
+		$('#small-video-div').click(function(){
+				if($(this).parent().find('p').text()=="弹出"){
+					$( '#little-win').css({
+						left:Math.floor((document.documentElement.clientWidth-500)/2),
+						top:Math.floor((document.documentElement.clientHeight-350)/2)
+					  }).show();
+					$(this).parent().find('p').text("固定");
+				}else{
+					$(this).parent().find('p').text("弹出");
+					$( '#little-win').hide();
+					};
+			});
+		
+		//右侧视频
+		$('.relevance').click(function(){
+				$(this).parent().parent().next().slideToggle(1000);
+			});
+		
+		//显示play icon
+		$('.video-pic').hover(function(){
+				$(this).next().show();
+			},function(){
+				$(this).next().hide();
+		});
+		//显示play bug
+		$('.play-icon').mouseenter(function(){
+				$(this).show();
+			});	
+
+			
+		//字数监视
+		$('#input-commnet').keydown(function(){
+				if ($.trim(this.value).length >= 150) { 
+					alert("输入字符大于150个,请重新输入!");
+					$(this).attr("disabled","disabled");
+				 }else{
+					 var sum = 150-$.trim(this.value).length-1;
+					 $(this).next().html("还可以输入"+sum+"个字");
+				}
+			});
+		
+		//回复评论
+		$('.reply').click(function(){
+				$('#input-commnet').text("回复"+$(this).prev().text()+":");
+				$("html,body").animate({scrollTop: $('.play').height()}, 1000);
+			});	
+		
+		//返回顶部		
+		$('.top > img').click(function(){
+			  	$("html,body").animate({scrollTop: 0}, 500);
+			  });
+		 
+		  $(window).scroll(function(){
+			  	if($(document).scrollTop()>1000){
+						var a = ($(window).width()-1000)/2;
+						var b = (a - $('.top').width())/2
+						$('.top').css("right",b).show();
+					}else{
+							$('.top').hide();
+						}
+			  });	  	
+		// load
+		$(window).scroll(function(){
+			if($(document).scrollTop() >= $(document).height()-$(window).height()){
+					$('.load').show();
+				}else{
+						$('.load').hide();
+					}
+			});
+		
+	});
+</script>
+<!-- 时间插件-->
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+
+<!-- 拖拉-->
+<script>
+  $(function() {
+    $('#little-win').draggable({ containment: "body", scroll: true,handle:"#title"});
+  });
+</script>
+
+<!-- 伸缩-->
+<script>
+  $(function() {
+    $( '#little-win').resizable();
+  });  
+</script>
+
+<!-- 小窗关闭-->
+<script>
+$(function() {
+    $('#title > button').click(function(){
+		$( '#little-win').hide();
+		$('#small-video-div').parent().find('p').text("弹出");
+	});
+  });
+</script>
+</head>
+
+<body>
+<header> 
+  <!-- nav -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#">主页</a></li>
+            <li><a href="#about">MV</a></li>
+            <li><a href="#contact">MP3</a></li>
+            <li><a href="#contact">歌手</a></li>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人收藏 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li style="box-shadow:none;" class="dropdown">
+              <form method="post" action="/" class="search" style="margin: 0px;position: relative;left: 254px;width: 190px;">
+                <input type="text" size="40" class="search-query dropdown-toggle" data-toggle="dropdown" style="margin-top: 4.5px;width:199px;" placeholder="搜索..." autocomplete="off" x-webkit-speech="" x-webkit-grammar="builtin:search">
+                <ul class="dropdown-menu" style="margin-top: 6px;margin-left: 15px;">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </form>
+            </li>
+            <li class="dropdown" style="left:360px;"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <form style="width: 240px;padding: 0; font-size: 12px;margin-bottom: 0;display: block;margin-top: 0em;padding-left: 20px;padding-top: 10px;">
+                  <fieldset class="textbox">
+                    <label class="username js-username"> <span>用户名或邮件地址</span>
+                      <input class="js-username-field email-input" type="text" name="session[username_or_email]" autocomplete="on">
+                    </label>
+                    <label class="password js-password"> <span>密码</span>
+                      <input class="js-password-field" type="password" value="" name="session[password]">
+                    </label>
+                  </fieldset>
+                  <fieldset class="subchck">
+                    <label class="remember">
+                      <input type="checkbox" value="1" name="remember_me">
+                      <span>记住我</span> </label>
+                    <button type="submit" class="btn submit">登录</button>
+                  </fieldset>
+                  <input type="hidden" name="scribe_log">
+                  <input type="hidden" name="redirect_after_login" value="/ladygaga">
+                  <input type="hidden" value="8924c25f54e2d8d21d37f723308d3a2564ee54fc" name="authenticity_token">
+                  <div class="divider"></div>
+                  <p class="footer-links"> <a class="forgot" href="/account/resend_password">忘记密码?</a><br>
+                    <a class="mobile has-sms" href="/account/complete">已经在通过短信使用 Rooster?</a> </p>
+                </form>
+              </ul>
+            </li>
+            <li style="position: relative;left: 360px;"><a href="#" data-toggle="modal" data-target="#myModal">注册</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse --> 
+      </div>
+    </div>
+  </div>
+  <!--/ nav --> 
+  
+</header>
+<div class="container">
+  <section class="play">
+    <video  controls="true">
+      <source src="video/Love The Way You Lie 格莱美现场版 中英字幕--Eminem  超清.mp4" />
+      <p>您的游览器不支持Video标签</p>
+    </video>
+    <div class="right-slide-bar">
+      <div class="slide-every-div">
+        <div>
+          <p>评论</p>
+        </div>
+        <img src="img/stackexchange-48.png" id="scroll-comment"> </div>
+      <div class="slide-every-div">
+        <div>
+          <p>分享</p>
+        </div>
+        <img src="img/slideshare-48.png"> </div>
+      <div class="slide-every-div">
+        <div>
+          <p>关灯</p>
+        </div>
+        <img src="img/khanacademy-48.png" id="light"> </div>
+      <div class="slide-every-div">
+        <div>
+          <p>弹出</p>
+        </div>
+        <img src="img/delicious-48.png" id="small-video-div"> </div>
+    </div>
+    
+    <!--视频信息-->
+    <div class="video-info">
+    <div> <span class="video-name">APFMH+Papercut+Given Up - SUMMER SONIC 2013现场版--<span> Linkin Park</span> </span> <span class="video-play-time"> <span>210</span> 次播放 </span> </div>
+    <div class="bshare-custom video-share"> 分享: <a title="分享到QQ空间" class="bshare-qzone"></a> <a title="分享到新浪微博" class="bshare-sinaminiblog"></a> <a title="分享到人人网" class="bshare-renren"></a> <a title="分享到腾讯微博" class="bshare-qqmb"></a> <a title="分享到网易微博" class="bshare-neteasemb"></a> <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a> <span class="BSHARE_COUNT bshare-share-count">0</span> <span class="button pink video-button">下载</span> <span class="button pink video-button">收藏</span> <span class="button pink video-button">推荐</span> </div>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script> 
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script> 
+  </section>
+  
+  <!-- 评论部分-->
+  <section class="comment"> 
+    <!-- 左边-->
+    <div> 
+      <!-- 输入评论-->
+      <div class="input-comment">
+        <div>
+          <p>所有评论(232)</p>
+        </div>
+        <div><img src="img/music.jpg"></div>
+        <div>
+          <form action="">
+            <textarea id="input-commnet"></textarea>
+            <span style="margin-left:10px;">还可以输入150个字</span>
+            <input type="submit" value="确定" style="float:right;">
+          </form>
+        </div>
+      </div>
+      <!-- 评论列表 -->
+      <div>
+        <ul>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music1.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span>
+              </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music2.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music3.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music4.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music5.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music6.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music7.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music1.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music2.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music3.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+          <li class="comment-list">
+            <div>
+              <div><img src="img/music4.jpg"></div>
+              <div>
+                <p class="comment-name">南瓜首首<span>2013-20-23:24:20:22</span></p>
+                <p>高端、大气、上档次,虽然这评价很俗,但看得出这支MV确实砸了钱。可以说,每个画面都很精致,尤其是鸽群飞起的瞬间,慢镜头运用的得好,也有人觉得不好,这个很自然,也可以理解。作为专辑同名主打,这首歌成功了,有概念、有态度,为边缘人群摇旗呐喊,大家必定积极响应,振臂高呼,期盼一个没有偏见、没有歧视的理想国。</p>
+                <span>303楼</span><span class="reply">回复</span> <span class="support">支持</span> </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- load gif-->
+      <div class="load"><img src="img/22.gif"></div>
+    </div>
+    <!-- 右边-->
+    <div class="video-recommend">
+      <div class="recommend-title">
+        <div> <span>相关视频</span> <i class="icon-chevron-down relevance"></i></div>
+      </div>
+      <div class="recommend-list">
+        <ul>
+          <li>
+            <div> <img src="img/relative1.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative2.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative3.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative4.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="recommend-title">
+        <div> <span>热点视频</span> <i class="icon-chevron-down relevance"></i></div>
+      </div>
+      <div class="recommend-list">
+        <ul>
+          <li>
+            <div> <img src="img/relative1.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative2.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative3.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative4.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="recommend-title">
+        <div> <span>猜你喜欢</span> <i class="icon-chevron-down relevance"></i></div>
+      </div>
+      <div class="recommend-list">
+        <ul>
+          <li>
+            <div> <img src="img/relative5.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative6.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative7.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div> <img src="img/relative.jpg" class="video-pic"><img src="img/ico_play_718.png" class="play-icon">
+              <div>
+                <p class="recommend-video-text" style="color: rgb(255, 102, 181);">给我一首歌的时间</p>
+                <p class="recommend-video-text">不能说的密码</p>
+                <p class="recommend-video-text"><i class="icon-play"></i> 200 <i class="icon-comment"></i> 100 </p>
+                <p class="recommend-video-text"><i class="icon-user"></i>周杰伦</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 关于其他的div --> 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">注册</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">用户名</label>
+        <div class="controls">
+          <input type="text" id="inputEmail" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">密码</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">确定密码</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="datepicker">生日</label>
+        <div class="controls">
+          <input type="text" id="datepicker" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">邮箱</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">注册</button>
+  </div>
+</div>
+
+<!-- 弹窗的div -->
+
+<div style="position:fixed;width:500px; height:auto; background:black; min-width:350px; min-height:200px; max-width:1000px;display:none; z-index:10555;" id="little-win"> 
+  <!-- 标题 -->
+  <div style="position:relative;height:30px; background: rgb(173, 161, 161);" id="title">
+    <p style="position:absolute; left:10px; top:6px;"><i class="icon-play"></i> lady cha cha</p>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="position:absolute; right:10px; top:6px;">×</button>
+  </div>
+  <!-- 内容 -->
+  <div>
+    <video  controls="true" style="width:100%; ">
+      <source src="video/Love The Way You Lie 格莱美现场版 中英字幕--Eminem  超清.mp4" />
+      <p>您的游览器不支持Video标签</p>
+    </video>
+  </div>
+</div>
+
+<!-- 返回顶部--> 
+<!-- to top -->
+<div class="top"> <img src="img/up.png"> </div>
+</body>
+</html>

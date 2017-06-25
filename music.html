@@ -1,0 +1,1031 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<html><head>
+<title>music</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!-- css -->
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.css" />
+<style type="text/css">
+body {
+	background: url(img/body.png);
+}
+.nav li:hover {
+	box-shadow: inset 3px 3px 10px #FFF;
+}
+.nav li:active {
+	box-shadow: inset 3px 3px 10px #FFF;
+}
+#myCarousel > .carousel-inner > .item > img {
+	max-width: none;
+}
+.corner {
+	color: black;
+	background-color: rgb(182, 176, 176);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	box-shadow: inset 3px 3px 10px #FFF, inset -3px -3px 10px #FFF;
+	position: absolute;
+	padding: 0px 150px;
+	top: 100px;
+	margin-bottom: 200px;
+	left: -135px;
+	z-index: 2;
+	text-align: center;
+}
+.corner > h1 {
+	font: normal 30pt Arial;
+	color: #FFFFFF;
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+.container {
+	width: 1300px;
+}
+section {
+	background: white;
+	height: 405px;
+	margin-bottom: 130px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 25px;
+}
+.seccommon {
+	color: #feeef5;
+	background: #f895c2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	background: -moz-linear-gradient(top, #feb1d3, #f171ab);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+	height: 50px;
+	width: 500px;
+	box-shadow: -6px 5px 10px #80809E;
+}
+.nav-p {
+	float: right;
+	width: 35px;
+	border-bottom: 4px solid pink;
+	font-size: 15px;
+	color: #A5A5A5;
+	margin-top: 15px;
+	margin-left: 55px;
+	text-align: center;
+}
+.nav-p:hover {
+	cursor: pointer;
+	color: white;
+	border-bottom: none;
+	background: #f895c2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	background: -moz-linear-gradient(top, #feb1d3, #f171ab);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+}
+.seccommon > h3 {
+	margin-left: 20px;
+	font: normal 25pt Arial;
+	color: rgb(231, 218, 225);
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+.seccommon:before {
+	content: "";
+	position: absolute;
+	left: -30px;
+	top: 5px;
+	display: block;
+	border-right-color: rgb(175, 137, 148);
+	border-right-style: solid;
+	border-right-width: 1px;
+	width: 30px;
+	height: 50px;
+	-webkit-box-shadow: -4px 5px 4px #80809E;
+	color: #feeef5;
+	background: #f895c2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	background: -moz-linear-gradient(top, #feb1d3, #f171ab);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+}
+.seccommon:after {
+	content: "";
+	position: absolute;
+	display: block;
+	height: 0;
+	width: 0px;
+	left: 452px;
+	top: 0px;
+	border: 25px solid #000;
+	border-color: transparent white transparent transparent;
+	z-index: 200;
+}
+.small-pic-div {
+	height: 305px;
+	width: 505px;
+	float: left;
+	margin-top: 30px;
+}
+.every-pic {
+	position: relative;
+	width: 240px;
+	height: 140px;
+	float: left;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.every-pic > p:nth-of-type(1) {
+	position: absolute;
+	bottom: 20px;
+	left: 5px;
+	color: white;
+}
+.every-pic > p:nth-of-type(2) {
+	position: absolute;
+	bottom: 0px;
+	left: 5px;
+	color: rgb(248, 130, 151);
+}
+.every-pic > img:nth-of-type(2) {
+	border-radius: 8px;
+}
+.mv-descript {
+	position: absolute;
+	height: 165px;
+	width: 240px;
+	z-index: 3;
+	display: none;
+	overflow: hidden;
+	background: white;
+	box-shadow: 0px 0px 10px rgb(0, 0, 0);
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+.mv-descript div {
+	color: rgb(149, 185, 33);
+}
+.mv-descript p {
+	word-wrap: break-word;
+	color: #f895c2;
+	color: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	color: -moz-linear-gradient(top, #feb1d3, #f171ab);
+	line-height: 24px;
+	margin-top: 10px;
+	-webkit-box-shadow: inset 0px 0px 26px #deabde;
+}
+.big-pic-div {
+	height: 305px;
+	width: 770px;
+	float: left;
+	margin-top: 30px;
+	margin-left: 25px;
+}
+.big-pic-div:hover {
+	border-radius: 8px;
+}
+.big-surrounding {
+	box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.every-big-pic {
+	float: left;
+	position: relative;
+	cursor: pointer;
+}
+.every-big-pic + div {
+	float: left;
+	width: 250px;
+	height: 305px;
+	margin-left: 25px;
+}
+.every-big-pic + div > p:nth-of-type(1) {
+	color: rgb(247, 120, 142);
+}
+.every-big-pic + div > p:nth-of-type(2) {
+	line-height: 26px;
+	margin-left: -1px;
+	overflow: hidden;
+	word-wrap: break-word;
+	height: 210px;
+}
+.every-big-pic>img:hover {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+.play-icon {
+	position: absolute;
+	z-index: 2;
+	top: 39.5px;
+	left: 89.5px;
+	display: none;
+}
+.play-icon-big {
+	position: absolute;
+	z-index: 2;
+	top: 109.5px;
+	left: 209.5px;
+	display: none;
+}
+section:nth-of-type(2) > .small-pic-div {
+	width: 820px;
+}
+section:nth-of-type(2) > .big-pic-div {
+	width: 480px;
+	margin-left: 0px;
+}
+section:nth-of-type(3) > .small-pic-div {
+	width: 1300px;
+}
+.every-album-pic {
+	position: relative;
+	height: 305px;
+	border: 1px solid pink;
+	/* width: 240; 因为加了border=1px 把原来专辑div改小*/
+	width: 237.79px;
+	float: left;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.every-album-pic:hover {
+	box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.every-album-pic > img {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.every-album-pic > div {
+	position: absolute;
+	border: 1px solid pink;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	right: 0px;
+	bottom: 15px;
+}
+.every-album-pic > div > img {
+	border-radius: 35px;
+}
+.every-album-pic > p:nth-of-type(1) {
+	margin-left: 7px;
+	margin-top: 3px;
+}
+.every-album-pic > p:nth-of-type(2) {
+	color: rgb(248, 130, 151);
+	margin-left: 7px;
+	margin-top: -9px;
+}
+.left-space {
+	margin-left: 25px;
+}
+.concern-pic-div {
+	width: 1300px;
+	height: 305px;
+	margin-top: 30px;
+}
+.concern-small-pic {
+	position: relative;
+	width: 240px;
+	height: 140px;
+	float: left;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.concern-small-pic:hover {
+	box-shadow: 0px 0px 10px rgb(0, 0, 0);
+	outline: 1px solid pink;
+}
+.concern-small-pic > img {
+	border-radius: 8px;
+}
+.concern-info {
+	position: absolute;
+	height: 140px;
+	width: 240px;
+	top: 0;
+	left: 0px;
+	background: rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0px -30px 30px rgb(156, 151, 151);
+	color: white;
+	border-radius: 8px;
+	display: none;
+}
+.concern-title {
+	color: #6F0;
+	margin-left: 10px;
+	margin-top: 15px;
+}
+.concern-bottom-title {
+	position: relative;
+	color: rgb(20, 22, 20);
+	bottom: 20px;
+	border-bottom-left-radius: 8px;
+	opacity: 0.8;
+	border-bottom-right-radius: 8px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FDFDFD), to(#F0B5CC));
+}
+.concern-bottom-title > p {
+	margin-left: 10px;
+}
+.play {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+ *display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	color: #feeef5;
+	border: solid 1px #d2729e;
+	background: #f895c2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	background: -moz-linear-gradient(top, #feb1d3, #f171ab);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+	font-size: 11px;
+	padding: .2em 1em .275em;
+	margin-left: 15px;
+	margin-top: 8px;
+}
+.person-active {
+	color: white;
+	border-bottom: none;
+	background: #f895c2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+	background: -moz-linear-gradient(top, #feb1d3, #f171ab);
+ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+}
+.person-small-pic {
+	position: relative;
+	width: 240px;
+	height: 240px;
+	float: left;
+	border-radius: 8px;
+	cursor: pointer;
+	border: 1px solid rgb(255, 148, 167);
+}
+.person-small-pic:hover {
+	box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.person-small-pic > img {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.top{
+	position:fixed; width:50px; height:50px; bottom:150px; display:none;
+}
+
+.top > img{
+	opacity:0.7; border-radius:10px; border-radius: 10px; box-shadow: 2px 2px 5px,-2px -2px 5px; 
+}
+
+</style>
+
+<!-- js -->
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	$(document).ready(function() {
+        $('.every-pic').hover( 
+			function(){
+					$(this).find('.play-icon').show();
+					$(this).find('.mv-descript').slideToggle(800);
+					$(this).addClass("big-surrounding");
+				},
+			function(){
+					$(this).find('.play-icon').hide();
+					$(this).find('.mv-descript').slideToggle(0);
+					$(this).removeClass("big-surrounding");
+				});
+		
+		  $('.every-big-pic').hover( 
+			function(){
+					$(this).find('.play-icon-big').show();
+					$(this).parent().addClass("big-surrounding");
+				},
+			function(){
+					$(this).find('.play-icon-big').hide();
+					$(this).parent().removeClass("big-surrounding");
+				});
+				
+		  $('.concern-small-pic').hover(
+		  	function(){
+					$(this).find('.concern-info').toggle(800);
+			    },
+			function(){
+					$(this).find('.concern-info').toggle(0);
+			    });
+		  
+
+		  $('.nav-p').click(function(){
+			    	$(this).parent().find('.person-active').removeClass("person-active");
+					$(this).addClass("person-active");
+				});
+		  $('.person-small-pic').hover(
+		  		function(){
+					$(this).find('.play-icon').show();
+				},
+				function(){
+					$(this).find('.play-icon').hide();
+				});		
+		  //top
+		  $('.top > img').click(function(){
+			  	$("html,body").animate({scrollTop: 0}, 500);
+			  });
+		 
+		   $(window).scroll(function(){
+			  	if($(document).scrollTop()>1000){
+						var a = ($(window).width()-1300)/2;
+						var b = (a - $('.top').width())/2
+						$('.top').css("right",b).show();
+					}else{
+							$('.top').hide();
+						}
+			  });	  		  		
+    });
+</script>
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+
+</head>
+
+<body>
+<header> 
+  <!-- nav -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#">主页</a></li>
+            <li><a href="#about">MV</a></li>
+            <li><a href="#contact">MP3</a></li>
+            <li><a href="#contact">歌手</a></li>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人收藏 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li style="box-shadow:none;" class="dropdown">
+              <form method="post" action="/" class="search" style="margin: 0px;position: relative;left: 254px;width: 190px;">
+                <input type="text" size="40" class="search-query dropdown-toggle" data-toggle="dropdown" style="margin-top: 4.5px;width:199px;" placeholder="搜索..." autocomplete="off" x-webkit-speech="" x-webkit-grammar="builtin:search">
+                <ul class="dropdown-menu" style="margin-top: 6px;margin-left: 15px;">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </form>
+            </li>
+            <li class="dropdown" style="left:360px;"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <form style="width: 240px;padding: 0; font-size: 12px;margin-bottom: 0;display: block;margin-top: 0em;padding-left: 20px;
+padding-top: 10px;">
+                  <fieldset class="textbox">
+                    <label class="username js-username"> <span>用户名或邮件地址</span>
+                      <input class="js-username-field email-input" type="text" name="session[username_or_email]" autocomplete="on">
+                    </label>
+                    <label class="password js-password"> <span>密码</span>
+                      <input class="js-password-field" type="password" value="" name="session[password]">
+                    </label>
+                  </fieldset>
+                  <fieldset class="subchck">
+                    <label class="remember">
+                      <input type="checkbox" value="1" name="remember_me">
+                      <span>记住我</span> </label>
+                    <button type="submit" class="btn submit">登录</button>
+                  </fieldset>
+                  <input type="hidden" name="scribe_log">
+                  <input type="hidden" name="redirect_after_login" value="/ladygaga">
+                  <input type="hidden" value="8924c25f54e2d8d21d37f723308d3a2564ee54fc" name="authenticity_token">
+                  <div class="divider"></div>
+                  <p class="footer-links"> <a class="forgot" href="/account/resend_password">忘记密码?</a><br>
+                    <a class="mobile has-sms" href="/account/complete">已经在通过短信使用 Rooster?</a> </p>
+                </form>
+              </ul>
+            </li>
+            <li style="position: relative;left: 360px;"><a href="#" data-toggle="modal" data-target="#myModal">注册</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse --> 
+      </div>
+    </div>
+  </div>
+  <!--/ nav --> 
+  
+  <!-- -->
+  <div class="corner">
+    <h1>音乐节</h1>
+  </div>
+  <!-- --> 
+  
+  <!-- Carousel
+    ================================================== -->
+  <div id="myCarousel" class="carousel slide" style="margin-top:40px;">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+      <li data-target="#myCarousel" data-slide-to="6"></li>
+      <li data-target="#myCarousel" data-slide-to="7"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active"> <img src="img/1.jpg" alt=""> 
+        <!--<div class="container">
+            <div class="carousel-caption">
+              <h1>Example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Sign up today</a>
+            </div>
+          </div>--> 
+      </div>
+      <div class="item"> <img src="img/2.jpg" alt=""> 
+        <!--<div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+            </div>
+          </div>--> 
+      </div>
+      <div class="item"> <img src="img/B16601405281611F323390D265D0F276_0x0.jpeg" alt=""> 
+        <!--<div class="container">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            </div>
+          </div>--> 
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> </div>
+  <!-- /.carousel --> 
+  
+</header>
+<div class="container"> 
+  <!-- 新歌首播 -->
+  <section>
+    <div style="position:relative;top:13px;">
+      <div class="seccommon" style="float:left;">
+        <h3 style="margin-top: 5px;">新歌首播</h3>
+      </div>
+      <div style="float:left; width: 797px;height:50px; ">
+        <p class="nav-p">其他</p>
+        <p class="nav-p">欧美 </p>
+        <p class="nav-p">内地 </p>
+        <p class="nav-p person-active">港台 </p>
+      </div>
+    </div>
+    
+    <!--小图-->
+    <div class="small-pic-div">
+      <div class="every-pic" > <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv1.jpeg">
+        <p>曲名</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv2.jpg">
+        <p>曲名</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-top:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv3.jpg">
+        <p>曲名</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-top:25px;margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv5.jpg">
+        <p>曲名</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+    </div>
+    <!--大图-->
+    <div class="big-pic-div">
+      <div class="every-big-pic"> <img src="img/2013712DF8D279CCDC94E0C9F763C208F970D6C.jpg"> <img src="img/ico_play_718.png" class="play-icon-big"> </div>
+      <!--说明-->
+      <div>
+        <h3>郎金龙</h3>
+        <p>Lady cha cha</p>
+        <p>测试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- MV排行榜-->
+  
+  <section>
+    <div style="position:relative; top:13px;">
+      <div class="seccommon" style="float:left;">
+        <h3 style="margin-top: 5px;">MV排行榜</h3>
+      </div>
+      <div style="float:left; width: 797px;height:50px; ">
+        <p class="nav-p">更多</p>
+      </div>
+    </div>
+    
+    <!--小图-->
+    <div class="small-pic-div">
+      <div class="every-pic" > <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv4.jpg">
+        <p>曲名1</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv16.jpg">
+        <p>曲名2</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv14.jpg">
+        <p>曲名3</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-top:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv7.jpg">
+        <p>曲名4</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-left:25px; margin-top:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv18.jpg">
+        <p>曲名5</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+      <div class="every-pic" style="margin-top:25px;margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv17.jpg">
+        <p>曲名6</p>
+        <p>人名</p>
+        <div class="mv-descript">
+          <div>
+            <h6>十二星座</h6>
+            <i class="icon-play"></i> 100 <i class="icon-thumbs-up"></i> 100 <i class="icon-comment"></i> 100 </div>
+          <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测</p>
+        </div>
+      </div>
+    </div>
+    <!--大图-->
+    <div class="big-pic-div">
+      <div class="every-big-pic"> <img src="img/24996538e88c305e97ddd897.jpg"> <img src="img/ico_play_718.png" class="play-icon-big"> </div>
+      <!--说明--> 
+      
+    </div>
+  </section>
+  
+  <!-- 个人专辑-->
+  
+  <section>
+    <div style="position:relative; top:13px;">
+      <div class="seccommon" style="float:left;">
+        <h3 style="margin-top: 5px;">销量专辑</h3>
+      </div>
+      <div style="float:left; width: 797px;height:50px; ">
+        <p class="nav-p">更多</p>
+      </div>
+    </div>
+    
+    <!--小图-->
+    <div class="small-pic-div">
+      <div  class="every-album-pic"> <img src="img/album1.jpg">
+        <div><img src="img/头像1.jpg"></div>
+        <p style="">一路向西</p>
+        <p>歌手名</p>
+      </div>
+      <div  class="every-album-pic left-space"> <img src="img/album2.jpg">
+        <div><img src="img/头像.png"></div>
+        <p style="">一路向西</p>
+        <p>歌手名</p>
+      </div>
+      <div  class="every-album-pic left-space"> <img src="img/album3.jpg">
+        <div><img src="img/头像3.jpg"></div>
+        <p style="">一路向西</p>
+        <p>歌手名</p>
+      </div>
+      <div  class="every-album-pic left-space"> <img src="img/album4.jpg">
+        <div><img src="img/头像4.jpg"></div>
+        <p style="">一路向西</p>
+        <p>歌手名</p>
+      </div>
+      <div  class="every-album-pic left-space"> <img src="img/album5.jpg">
+        <div><img src="img/头像2.jpg"></div>
+        <p style="">一路向西</p>
+        <p>歌手名</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 演唱会-->
+  
+  <section>
+    <div style="position:relative; top:13px;height:50px;">
+      <div class="seccommon" style="float:left;">
+        <h3 style="margin-top: 5px;">演唱会</h3>
+      </div>
+      <div style="float:left; width: 797px;height:50px; ">
+        <p style="float:right;width:30px;font-size:10px; color:#A5A5A5; margin:0 auto; margin-left:55px;"></p>
+        <p class="nav-p">更多</p>
+      </div>
+    </div>
+    
+    <!--小图-->
+    <div class="concern-pic-div">
+      <div class="concern-small-pic"> <img src="img/mv14.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic" style="margin-left:25px;"> <img src="img/mv17.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic" style="margin-left:25px;"> <img src="img/mv19.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic" style="margin-left:25px;"> <img src="img/mv18.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic" style="margin-left:25px;"> <img src="img/mv11.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic" style="margin-top:25px;"> <img src="img/mv10.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic left-space" style="margin-top:25px;"> <img src="img/mv9.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic left-space" style="margin-top:25px;"> <img src="img/mv8.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic left-space" style="margin-top:25px;"> <img src="img/mv7.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+      <div class="concern-small-pic left-space" style="margin-top:25px;"> <img src="img/mv6.jpg">
+        <div class="concern-bottom-title">
+          <p>看演唱会我杜甫风</p>
+        </div>
+        <div class="concern-info">
+          <h5 class="concern-title">演唱会名字</h5>
+          <p style="margin-left:10px;"> <i class="icon-play icon-white"></i> 200 <i class="icon-comment icon-white"></i> 100</p>
+          <p style="color:pink; margin-left:10px;"><i class="icon-user icon-white"></i> 艺人名字</p>
+          <a href="#" class="play">播放</a> </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 个人中心 -->
+  
+  <section style="width:1312px;">
+    <div style="position:relative; top:13px;height:50px;">
+      <div class="seccommon" style="float:left;">
+        <h3 style="margin-top: 5px;">个人中心</h3>
+      </div>
+      <div style="float:left; width: 797px;height:50px; ">
+        <p style="float:right;width:30px;font-size:10px; color:#A5A5A5; margin:0 auto; margin-left:55px;"></p>
+        <p class="nav-p " style="margin-top: 5px;">我的收藏</p>
+        <p class="nav-p " style="margin-top: 5px;">观看记录</p>
+        <p class="nav-p " style="margin-top: 5px;">我的订阅</p>
+        <p class="nav-p person-active " style="margin-top: 5px;">为我推荐</p>
+      </div>
+    </div>
+    
+    <!--小图-->
+    <div class="concern-pic-div" style="width:1312px;">
+      <div class="person-small-pic" > <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv1.jpeg">
+        <div style="background: rgba(218, 218, 218,0.6); border-bottom-right-radius:8px; border-bottom-left-radius:8px; height:100px;">
+          <p style="margin-left:10px; line-height:15px; padding-top:10px; color: rgb(158, 110, 7);">给我一首歌的时间</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">十二星座</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);"><i class="icon-play"></i> 100 <i class="icon-comment"></i> 120</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">周杰伦</p>
+        </div>
+      </div>
+      <div class="person-small-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv16.jpg">
+        <div style="background: rgba(218, 218, 218,0.6); border-bottom-right-radius:8px; border-bottom-left-radius:8px; height:100px;">
+          <p style="margin-left:10px; line-height:15px; padding-top:10px; color: rgb(158, 110, 7);">MV的名字</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">专辑名</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);"><i class="icon-play"></i> 100 <i class="icon-comment"></i> 120</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">蔡依林 王力宏</p>
+        </div>
+      </div>
+      <div class="person-small-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv3.jpg">
+        <div style="background: rgba(218, 218, 218,0.6); border-bottom-right-radius:8px; border-bottom-left-radius:8px; height:100px;">
+          <p style="margin-left:10px; line-height:15px; padding-top:10px; color: rgb(158, 110, 7);">rolling in the deep</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">face in face</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);"><i class="icon-play"></i> 100 <i class="icon-comment"></i> 120</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">lady cha cha</p>
+        </div>
+      </div>
+      <div class="person-small-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv5.jpg">
+        <div style="background: rgba(218, 218, 218,0.6); border-bottom-right-radius:8px; border-bottom-left-radius:8px; height:100px;">
+          <p style="margin-left:10px; line-height:15px; padding-top:10px; color: rgb(158, 110, 7);">在不在身边的日子</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">新专辑</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);"><i class="icon-play"></i> 100 <i class="icon-comment"></i> 120</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">许嵩</p>
+        </div>
+      </div>
+      <div class="person-small-pic" style="margin-left:25px;"> <img src="img/ico_play_718.png" class="play-icon"> <img src="img/mv2.jpg">
+        <div style="background: rgba(218, 218, 218,0.6); border-bottom-right-radius:8px; border-bottom-left-radius:8px; height:100px;">
+          <p style="margin-left:10px; line-height:15px; padding-top:10px; color: rgb(158, 110, 7);">MV的名字</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">专辑名</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);"><i class="icon-play"></i> 100 <i class="icon-comment"></i> 120</p>
+          <p style="margin-left:10px; line-height:15px; color: rgb(158, 110, 7);">艺人</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 结尾 -->
+  <section>
+    <div style="height:250px; border-top-left-radius:8px; border-top-right-radius:8px;">
+      <div style="width:324px; float:left; height:200px; margin-top:25px; border-right: 1px solid pink; text-align:center;">介绍</div>
+      <div style="width:324px; float:left; height:200px; margin-top:25px; border-right: 1px solid pink; text-align:center;">联系</div>
+      <div style="width:324px; float:left; height:200px; margin-top:25px; border-right: 1px solid pink; text-align:center;">建议、评论</div>
+      <div style="width:324px; float:left; height:200px; margin-top:25px; text-align:center;">手机客户端</div>
+    </div>
+    <div style="text-align:center; margin-top:30px;">
+      <p>本网站为个人兴趣所创作，欢迎各种建议和评论。</p>
+      <p>Designed and Developed by Rooster Fang.</p>
+      <p>Copyright © 2013 Rooster Fang. All Rights Reserved.</p>
+    </div>
+  </section>
+</div>
+
+<!-- 关于其他的div --> 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">注册</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">用户名</label>
+        <div class="controls">
+          <input type="text" id="inputEmail" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">密码</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">确定密码</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="datepicker">生日</label>
+        <div class="controls">
+          <input type="text" id="datepicker" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">邮箱</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">注册</button>
+  </div>
+</div>
+
+<!-- to top -->
+<div class="top">
+	<img src="img/up.png">
+</div>
+
+</body>
+</html>
